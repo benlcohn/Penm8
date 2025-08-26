@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ document.title }}</h2>
+  <p><strong>Words:</strong> {{ document.word_count }}</p>
+  <p><strong>Characters:</strong> {{ document.char_count }}</p>
+  <hr>
+  <div>
+    <div class="formatted-text">
+        {{ document.formatted_text|safe }}
+    </div>
+  </div>
+{% endblock %}

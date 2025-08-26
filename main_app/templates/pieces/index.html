@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>All Pieces</h1>
+
+  {% if pieces %}
+    <ul>
+      {% for piece in pieces %}
+        <li>
+          <a href="{% url 'document_detail' slug=piece.slug %}">
+            {{ piece.title }} <em>by {{ piece.author }}</em>
+          </a>
+          — {{ piece.word_count }} words, {{ piece.char_count }} chars
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No pieces uploaded yet.</p>
+  {% endif %}
+{% endblock %}

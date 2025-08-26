@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Upload a Document or Paste Rich Text</h1>
+
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div>
+      <label for="id_title">Title</label><br>
+      {{ form.title }}
+    </div>
+
+    <div>
+      <label for="id_author">Author</label><br>
+      {{ form.author }}
+    </div>
+
+    <hr>
+
+    <div>
+      <label for="id_uploaded_file">Upload a .docx file:</label><br>
+      {{ form.uploaded_file }}
+    </div>
+
+    <p><em>— OR —</em></p>
+
+    <div>
+      <label for="id_formatted_text">Paste or type text (with formatting):</label><br>
+      {{ form.formatted_text }} {# CKEditor will render here #}
+    </div>
+
+    <br>
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

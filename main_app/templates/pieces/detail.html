@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 style="font-size: 3em;">{{ document.title }}</h1>
+  <p style="margin-top: -5px; margin-bottom: 15px; font-style: italic; color: #444;">
+    by {{ document.author }}
+  </p>
+
+  <p style="color: #666; font-size: 0.9em; margin-top: 5px;">
+    {{ document.word_count }} words • 
+    {{ document.char_count }} characters • 
+    {{ document.sentence_count }} sentences • 
+    {{ document.line_count }} lines • 
+    {{ document.paragraph_count }} paragraphs
+    <br>
+    <small>Uploaded on {{ document.created_at|date:"F j, Y" }}</small>
+  </p>
+
+  <hr>
+
+  {% if document.formatted_text %}
+    <div class="formatted-text">
+      {{ document.formatted_text|safe }}
+    </div>
+  {% else %}
+    <p><em>No formatted content available.</em></p>
+  {% endif %}
+{% endblock %}

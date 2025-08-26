@@ -1,0 +1,23 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+
+# Django stuff
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# NLTK corpora (don’t commit this, it’s too big)
+nltk_data/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+.DS_Store
