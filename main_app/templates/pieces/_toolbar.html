@@ -1,0 +1,47 @@
+    <!-- Minimal Tools Dropdown -->
+    <div style="position: relative; display: inline-block;">
+      <button onclick="toggleDropdown()" 
+        style="padding: 6px 12px; border: none; border-radius: 4px; background: #f9f9f9; cursor: pointer; font-size: 0.9em;">
+        Tools ▾
+      </button>
+      <div id="toolsDropdown" 
+           style="display: none; position: absolute; right: 0; margin-top: 5px; background: #fff; border: 1px solid #ddd; border-radius: 4px; min-width: 140px; font-size: 0.9em; z-index: 100;">
+        <a href="#" onclick="toggleScansion(); return false;" 
+           style="display: block; padding: 8px 12px; text-decoration: none; color: #333;">Toggle Scansion</a>
+        <a href="#" style="display: block; padding: 8px 12px; text-decoration: none; color: #aaa; pointer-events: none;">Meter (soon)</a>
+        <a href="#" style="display: block; padding: 8px 12px; text-decoration: none; color: #aaa; pointer-events: none;">Heatmap (soon)</a>
+      </div>
+    </div>
+
+  <script>
+    // Dropdown toggle
+    function toggleDropdown() {
+      const dropdown = document.getElementById("toolsDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    // Close dropdown if clicking outside
+    document.addEventListener("click", function(e) {
+      const dropdown = document.getElementById("toolsDropdown");
+      if (!e.target.closest("button[onclick='toggleDropdown()']")) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    // Scansion toggle
+    function toggleScansion() {
+      const normalText = document.getElementById("normal-text");
+      const scannedText = document.getElementById("scanned-text");
+
+      if (scannedText.style.display === "none") {
+        normalText.style.display = "none";
+        scannedText.style.display = "block";
+      } else {
+        scannedText.style.display = "none";
+        normalText.style.display = "block";
+      }
+
+      // close dropdown after clicking
+      document.getElementById("toolsDropdown").style.display = "none";
+    }
+  </script>

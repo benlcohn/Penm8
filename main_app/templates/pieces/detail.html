@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1 style="font-size: 3em;">{{ document.title }}</h1>
-  <p style="margin-top: -5px; margin-bottom: 15px; font-style: italic; color: #444;">
-    by {{ document.author }}
-  </p>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <h1 style="font-size: 3em; margin-bottom: 0;">{{ document.title }}</h1>
+      <p style="margin-top: -5px; margin-bottom: 15px; font-style: italic; color: #444;">
+        by {{ document.author }}
+      </p>
+    </div>
+
+    {% include "pieces/_toolbar.html" %}
+  </div>
 
   <p style="color: #666; font-size: 0.9em; margin-top: 5px;">
     {{ document.word_count }} words • 
     {{ document.char_count }} characters • 
+    {{ document.syllable_count }} syllables
+    <br>
     {{ document.sentence_count }} sentences • 
     {{ document.line_count }} lines • 
     {{ document.paragraph_count }} paragraphs
@@ -16,13 +24,33 @@
     <small>Uploaded on {{ document.created_at|date:"F j, Y" }}</small>
   </p>
 
-  <hr>
+  <hr class="my-6">
 
-  {% if document.formatted_text %}
-    <div class="formatted-text">
-      {{ document.formatted_text|safe }}
+  <div style="display: flex; gap: 40px; align-items: flex-start;">
+    <!-- Left: document text -->
+    <div style="flex: 1; line-height: .7;">
+      <div id="normal-text">
+        {% for line in line_stats %}
+          <p>{{ line.text|safe }}</p>
+        {% endfor %}
+      </div>
+      <div id="scanned-text" style="display: none;">
+        {{ scanned_text|safe }}
+      </div>
     </div>
-  {% else %}
-    <p><em>No formatted content available.</em></p>
-  {% endif %}
+
+    <!-- Right: stats -->
+    <div style="flex: 0 0 250px; line-height: .7;">
+      <div>
+        {% for line in line_stats %}
+          {% if line.words == -1 %}
+            <p style="color: transparent;">·</p>
+          {% else %}
+            <p>[{{ line.syllables }} syllables | {{ line.words }} words]</p>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

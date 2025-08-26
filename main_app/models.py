@@ -15,6 +15,7 @@ class Document(models.Model):
     sentence_count = models.PositiveIntegerField(default=0)
     line_count = models.PositiveIntegerField(default=0)
     paragraph_count = models.PositiveIntegerField(default=0)
+    syllable_count = models.PositiveIntegerField(default=0)
 
     # Slug & timestamps
     slug = models.SlugField(unique=True, blank=True)  # URL-safe identifier

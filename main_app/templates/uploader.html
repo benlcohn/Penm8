@@ -11,6 +11,8 @@
     </ul>
   {% endif %}
 
+  {{ form.media }}  {# ✅ This loads CKEditor JS & CSS #}
+
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -35,7 +37,7 @@
 
     <div>
       <label for="id_formatted_text">Paste or type text (with formatting):</label><br>
-      {{ form.formatted_text }} {# CKEditor will render here #}
+      {{ form.formatted_text }}
     </div>
 
     <br>

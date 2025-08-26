@@ -1,8 +1,11 @@
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 from .models import Document
 from pathlib import Path
 
 class DocumentForm(forms.ModelForm):
+    formatted_text = forms.CharField(widget=CKEditorWidget(config_name='default'), required=False)
+
     class Meta:
         model = Document
         fields = ["title", "author", "uploaded_file", "formatted_text"]

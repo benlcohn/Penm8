@@ -133,7 +133,9 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Full',  # show every available option
+        'toolbar': 'Full',
+        'height': 300,
+        'width': "75%",
         'extraAllowedContent': 'p{text-align}; div{text-align};',
         'extraPlugins': ','.join([
             'justify',       # alignment support
